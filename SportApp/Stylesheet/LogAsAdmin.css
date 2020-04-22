@@ -1,0 +1,62 @@
+﻿body {
+    background: linear-gradient(#4B77BE,#22A7F0);
+    background-repeat:no-repeat;
+    background-size: cover;
+    color: #fff;
+}
+.morePadding {
+    padding: 15px;
+}
+
+.ControlerSize {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    padding-left: 40px;
+}
+
+.realSize {
+    width: 100%;
+    border-radius: 30px;
+}
+
+.center {
+    float: none;
+    position: center;
+    display: block;
+    margin: 3px auto;
+    width: 30%;
+}
+
+.Abit {
+    margin-top: 5px;
+    margin-left: 3px;
+}
+
+.But {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background: #333333;
+    padding: 5px;
+}
+
+.form-control-feedback {
+    position: absolute;
+    top: .4rem;
+    left: 1.5rem;
+    z-index: 2;
+    display: block;
+    text-align: center;
+    pointer-events: none;
+}
+
+.glyphicon {
+    color: black;
+    width: 5px;
+    height: 5px;
+}
+
+i {
+    margin-top: -4px;
+    margin-left: 5px;
+}

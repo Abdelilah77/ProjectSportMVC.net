@@ -1,0 +1,21 @@
+using SportApp.Context;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+
+namespace SportApp
+{
+    public class MvcApplication : System.Web.HttpApplication
+    {
+        protected void Application_Start()
+        {
+           //  Database.SetInitializer<DbCont>(new DropCreateDatabaseIfModelChanges<DbCont>());
+            AreaRegistration.RegisterAllAreas();
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+        }
+    }
+}

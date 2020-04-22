@@ -1,0 +1,132 @@
+﻿@model IEnumerable<SportApp.Models.Entraineur>
+
+    <p style="text-align:center;color:#22d1ee;margin:15px 0; font-weight:bolder;font-size:22px;">
+        See Entraineur
+        <span class="glyphicon glyphicon-user"></span>
+    </p>
+<div class="tableFixHead">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Img)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sport)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <img src="~/Img/@item.Img" class="img-circle" alt="Alternate Text" style="width:40px;height:40px;" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sport)
+                    </td>
+                    <td>
+
+                        @Ajax.ActionLink("Update ", "Edit", "Admins", new
+                        {
+                            id = item.Id_En
+                   }, new AjaxOptions
+                   {
+                       OnSuccess = "onSuccessProc"
+                   },
+                new
+                {
+                  @id = "votePlus"
+                }
+                )
+                        |
+                        @Ajax.ActionLink("Delete ", "Delete", "Admins", new
+                        {
+                                                id = item.Id_En
+                                       }, new AjaxOptions
+                                       {
+                                           OnSuccess = "onSuccessProc"
+                                       },
+                                    new
+                                    {
+                                      @id = "votePlus"
+                                    }
+                                       )
+
+                        |
+                        @Ajax.ActionLink("Details", "DetailsEntr", "Admins", new
+                        {
+                            id = item.Id_En
+                   }, new AjaxOptions
+                   {
+                       OnSuccess = "onSuccessProc"
+                   },
+                new
+                {
+                  @id = "votePlus"
+                }
+                )
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    function onSuccessProc(respData) {
+        $('#RmplaceHere').html(respData);
+        $("#votePlus").hide();
+    };
+ </script>
+<style>
+       .table > thead > tr > th {
+        padding: 20px;
+        margin: 2px;
+        box-shadow: 0 4px 8px 0 rgba(146, 148, 29, 0.2), 0 6px 20px 0 rgba(209, 199, 51, 0.19);
+    }
+
+    th {
+        background-color: #0e153a;
+        color: #22d1ee;
+    }
+
+    .tableFixHead {
+        overflow-y: auto;
+        height: 70vh;
+    }
+
+        .tableFixHead thead th {
+            position: sticky;
+            top: 0;
+        }
+
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        padding: 8px 16px;
+    }
+</style>

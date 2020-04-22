@@ -1,0 +1,187 @@
+﻿@model IEnumerable<SportApp.Models.Client>
+
+<script src="~/Scripts/chartjs/Chart.min.js"></script>
+<h4 style="text-align:center;" class="header">Charts </h4>
+<div class="row">
+    <div class="col-md-6">
+        <p style="text-align:center;color:#22d1ee;margin:15px 0; font-weight:bolder;font-size:16px;">
+           Male / Female
+            <span class="glyphicon glyphicon-user"></span>
+        </p>
+        <canvas id="myChart"></canvas>
+    </div>
+    <div class="col-md-6">
+        <p style="text-align:center;color:#22d1ee;margin:15px 0; font-weight:bolder;font-size:16px;">
+            Types Of Sport
+            <span class="glyphicon glyphicon-plus"></span>
+        </p>
+        <canvas id="myChart2"></canvas>
+    </div>
+</div>
+
+<div class="row">
+    <p style="text-align:center;color:#22d1ee;margin:15px 0; font-weight:bolder;font-size:16px;">
+       Sport/money
+        <span class="glyphicon glyphicon-plus"></span>
+    </p>
+    <div class="col-md-12"><canvas id="myChart3"></canvas></div>
+</div>
+
+
+
+
+<script>
+
+ var ctx = document.getElementById('myChart').getContext('2d');
+ var ctx2 = document.getElementById('myChart2').getContext('2d');
+ var ctx3 = document.getElementById('myChart3').getContext('2d');
+
+
+
+    ///// chart 1 male/female
+
+    var Ar = [];
+
+    var array = @Html.Raw(Json.Encode(Model.Select(user => new{sexe = user.Sexe})));
+
+     var AM = @Html.Raw( Json.Encode(Model.Count(user => user.Sexe=="Male")));
+
+    var AF = @Html.Raw(Json.Encode(Model.Count(user => user.Sexe=="Female")));
+
+
+
+
+       for (var i = 0; i < array.length; i++) {
+                Ar[i] = array[i].sexe;
+            }
+            Ar = Array.from(new Set(Ar));
+
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+             type: 'pie',
+
+            // The data for our dataset
+            data: {
+                labels: Ar,
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: ['#22d1ee ','#fc5185 '],
+                    borderColor: '#22d1ee',
+                    data: [AM, AF],
+                    borderWidth:0
+
+                }]
+            },
+
+            // Configuration options go here
+            options: {}
+        });
+
+//// Fine chart 1
+
+
+//// chart 2
+
+
+    var array2 = @Html.Raw(Json.Encode(Model.Select(c=> new { sport = c.Sport ,prix = c.Prix}).GroupBy(c=>c.sport)));
+    var Ar2 = [];
+    var Acount = [];
+    for (var i = 0; i < array2.length; i++) {
+        Ar2[i] = array2[i][0].sport;
+        Acount[i] = array2[i].length;
+    }
+
+
+
+     var chart = new Chart(ctx2, {
+            // The type of chart we want to create
+             type: 'bar',
+
+            // The data for our dataset
+            data: {
+                labels: Ar2,
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: ['#242582 ','#553d67 ','#f64c72','#99738e','#2f2fa2'],
+                    borderColor: '#22d1ee',
+                    data:  Acount,
+                    borderWidth:0
+
+                }]
+            },
+
+            // Configuration options go here
+         options: {
+               responsive: true,
+           scales: {
+        xAxes: [{
+            barPercentage: 0.4,
+               }],
+         yAxes: [{
+              ticks: {
+                beginAtZero:true
+            }
+               }]
+
+           }}
+        });
+    ///fin chart 2
+    ///start chart3
+    var Ar3 = [];
+    Ar3 = new Uint16Array(array2.length); 
+    for (var i = 0; i < array2.length; i++) {
+        for (var y = 0; y < array2[i].length; y++) {
+            Ar3[i] += array2[i][y].prix; 
+         }
+    }
+
+    var chart = new Chart(ctx3, {
+            // The type of chart we want to create
+             type: 'bar',
+
+            // The data for our dataset
+            data: {
+                labels: Ar2,
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: ['#242582 ','#553d67 ','#f64c72','#99738e','#2f2fa2'],
+                    borderColor: '#22d1ee',
+                    data: Ar3,
+                    borderWidth:0
+
+                }]
+            },
+
+            // Configuration options go here
+         options: {
+               responsive: true,
+           scales: {
+        xAxes: [{
+            barPercentage: 0.1,
+               }],
+         yAxes: [{
+              ticks: {
+                beginAtZero:true
+            }
+               }]
+
+           }}
+        });
+    ////
+
+</script>
+
+<style>
+    .header {
+        display: block;
+        height: 44px;
+        margin: 20px;
+        color: #22d1ee;
+        background-color: #0e153a;
+        font-family: 'Brandon Grotesque', Arial, sans-serif;
+        padding-top: 12px;
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+</style>

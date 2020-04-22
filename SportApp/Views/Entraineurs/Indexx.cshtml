@@ -1,0 +1,131 @@
+﻿@model IEnumerable<SportApp.Models.Entraineur>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+
+
+<div class="UlAdmin navbar  navbar-default ">
+    <div class="container UlAdmin">
+
+        <ul class="nav navbar-nav navbar-left">
+            <li class="dropdown">
+                <a href="" class="dropdown-toggle" style="color: #22d1ee;" data-toggle="dropdown">See <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Ajax.ActionLink("See A client", "SeeClient", new AjaxOptions()
+                          {
+                             HttpMethod = "GET",
+                             UpdateTargetId = "RmplaceHere",
+                             InsertionMode = InsertionMode.Replace
+
+                          })
+                    </li>
+
+
+                </ul>
+
+            </li>
+            <li class="dropdown">
+                <a href="" class="dropdown-toggle" style="color: #22d1ee;" data-toggle="dropdown">Add <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Ajax.ActionLink("ADD A client", "AddClient", new AjaxOptions()
+                         {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "RmplaceHere",
+                            InsertionMode = InsertionMode.Replace
+
+                         })
+                    </li>
+
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="" class="dropdown-toggle" style="color: #22d1ee;" data-toggle="dropdown"> Dashbord <span class="caret"></span></a>
+                <ul class="dropdown-menu ">
+                    <li>
+                        @Ajax.ActionLink("Chart Test", "Chart", new AjaxOptions()
+                   {
+                       HttpMethod = "GET",
+                       UpdateTargetId = "RmplaceHere",
+                       InsertionMode = InsertionMode.Replace
+
+                   })
+
+
+
+
+
+
+
+
+                    </li>
+
+
+                </ul>
+            </li>
+            <li>
+                @using (Html.BeginForm("LogOut", "Entraineurs", FormMethod.Post))
+                {
+
+                    <button class="btn  navbar-brand" style="margin-top:5px; color:#fff; background-color:#0e153a;border:1px solid red;">Log Out</button>
+
+                }
+            </li>
+            </ul>
+
+
+    </div>
+</div>
+<div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12" id="RmplaceHere">
+                <p class="AdAera">Welcome Admin Area</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<style>
+    .UlAdmin {
+        background-color: #0e153a;
+    }
+
+        .UlAdmin > ul > li > a {
+            padding: 20px 20px;
+        }
+
+        .UlAdmin > ul > li {
+            margin: 0 59px;
+        }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        font-family: 'Century Gothic';
+        color: #22d1ee;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    .dropdown-menu {
+        left: 15px;
+        padding: 20px;
+        padding-right: 47px;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+        color: #0e153a;
+    }
+    .AdAera{
+        font-weight:bolder;
+        font-size:60px;
+        color: #0e153a;
+        display:block;
+        margin:10% 3%;
+        z-index:1;
+    }
+</style>
+

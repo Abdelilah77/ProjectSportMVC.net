@@ -1,0 +1,25 @@
+﻿@model IList<SportApp.Models.Client>
+@{
+    ViewBag.Title = "Client";
+}
+
+<h2>Client</h2>
+
+<div>
+    <h4>Admin</h4>
+    <hr />
+    @foreach (var item in Model)
+    {
+       
+        <table border="1">
+            <tr>
+                <td> @item.Name </td>
+                <td> @item.Prix </td>
+                <td> @item.Sexe </td>           
+                <td> @item.Id_cli </td>
+                <td> @item.Img </td>
+            </tr>
+        </table>
+    }
+
+</div>
