@@ -1,0 +1,59 @@
+﻿@model SportApp.Models.Entraineur
+@{
+    ViewBag.Title = "LogeAsAentre";
+}
+
+
+
+<link href="~/Stylesheet/LogAsAdmin.css" rel="stylesheet" />
+<body>
+    <div class=" text-center">
+        <h2 style="margin:100px;">Log As Entraineur</h2>
+        @using (Html.BeginForm("LogeAsAentre", "Home", FormMethod.Post))
+        {
+    <h4>Entraineur</h4>
+            <hr />
+            <div class="center ">
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+
+                <div class="form-group has-feedback">
+
+                    <i class="glyphicon glyphicon-user form-control-feedback"></i>
+                    @Html.EditorFor(model => model.User_name, new { htmlAttributes = new { @class = "form-control ControlerSize realSize morePadding", placeholder = "UserName" } })
+                    @Html.ValidationMessageFor(model => model.User_name, "", new { @class = "text-danger" })
+
+
+                </div>
+                <div class="form-group has-feedback">
+
+                    <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control ControlerSize realSize morePadding", placeholder = "Password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+
+                </div>
+                <div class="form-group ">
+                    <button class="  realSize But ">
+                        Log in
+                    </button>
+                </div>
+            </div>
+
+
+        }
+    </div>
+
+</body>
+
+<style>
+    body{
+    background:linear-gradient(#C91F37,#D24D57);
+    background-size:cover;
+    background-repeat:no-repeat;
+    }
+</style>

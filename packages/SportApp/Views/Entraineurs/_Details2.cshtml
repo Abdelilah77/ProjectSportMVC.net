@@ -1,0 +1,89 @@
+﻿@model SportApp.Models.Client
+
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Img)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_naiss)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_naiss)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dateè_Entre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dateè_Entre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prix)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prix)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sexe)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Back ", "Indexx")
+
+    @Ajax.ActionLink("Back to List", "SeeClient", "Entraineurs", new
+                                                  {
+                                                                          id = Model.Id_cli
+                                                                 }, new AjaxOptions
+                                                                 {
+                                                                     OnSuccess = "onSuccessProc"
+                                                                 },
+                                                              new
+                                                              {
+                                                                @id = "votePlus"
+                                                              }
+                                                                 )
+
+</p>
+<script>
+     function onSuccessProc(respData) {
+        $('#RmplaceHere').html(respData);
+        $("#votePlus").hide();
+    };
+</script>
+
+

@@ -1,0 +1,20 @@
+﻿@model IList<SportApp.Models.Entraineur>
+@{
+    ViewBag.Title = "Enter";
+}
+
+<h2>Enter</h2>
+
+@foreach (var item in Model)
+{
+
+    <table border="1">
+        <tr>
+            <td> @item.Name </td>
+            <td> @item.Password </td>
+            <td> @item.Sport </td>
+            <td> @item.User_name </td>
+            <td> @item.Img </td>
+        </tr>
+    </table>
+}

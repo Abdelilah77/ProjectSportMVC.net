@@ -1,0 +1,112 @@
+﻿@model SportApp.Models.Client
+
+<div class="container">
+    @using (Html.BeginForm("AddClient", "Entraineurs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4 style="text-align:center;" class="header">Add Client</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="name" value="" class="form-control" id="ImgSave" />
+                    @Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Date_naiss, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Date_naiss, new { type = "datetime-local", @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.Date_naiss, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Dateè_Entre, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Dateè_Entre, new { type = "datetime-local", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Dateè_Entre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sport, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Sport, (IEnumerable<SelectListItem>)ViewBag.sports, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Sport, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Prix, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Prix, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Prix, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sexe, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Sexe, (IEnumerable<SelectListItem>)ViewBag.sexe, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Sexe, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="BtnAwsome" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+<style>
+    .form-control {
+        width: 60%;
+    }
+
+    .header {
+        display: block;
+        height: 44px;
+        margin: 20px;
+        color: #22d1ee;
+        background-color: #0e153a;
+        font-family: 'Brandon Grotesque', Arial, sans-serif;
+        padding-top: 12px;
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .BtnAwsome {
+        padding: 10px 15px;
+        color: #22d1ee;
+        background-color: #0e153a;
+        border: 1px solid #22d1ee;
+        border-radius: 5px;
+        transition: .5s ease-in-out;
+        font-weight: bold;
+    }
+
+        .BtnAwsome:hover {
+            background-color: #1c2761;
+        }
+</style>
